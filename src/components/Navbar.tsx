@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Leaf, Globe } from "lucide-react";
+import { Menu, X, Leaf, Globe, LogIn, LayoutDashboard } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
   { en: "Home", hi: "होम", href: "#home" },
