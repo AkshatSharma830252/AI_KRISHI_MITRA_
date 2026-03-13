@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Leaf, Globe } from "lucide-react";
+import { Menu, X, Leaf, Globe, LogIn, LayoutDashboard } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
   { en: "Home", hi: "होम", href: "#home" },
@@ -17,6 +18,7 @@ const navItems = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { lang, toggleLang, t } = useLang();
+  const { user } = useAuth();
 
   return (
     <motion.nav
@@ -57,6 +59,21 @@ const Navbar = () => {
             {lang === "en" ? "हिंदी" : "English"}
           </Button>
 
+          {user ? (
+            <a href="/dashboard">
+              <Button variant="default" size="sm" className="bg-primary text-primary-foreground btn-glow gap-1.5">
+                <LayoutDashboard className="w-4 h-4" />
+                Dashboard
+              </Button>
+            </a>
+          ) : (
+            <a href="/auth">
+              <Button variant="default" size="sm" className="bg-primary text-primary-foreground btn-glow gap-1.5">
+                <LogIn className="w-4 h-4" />
+                {t("Login", "लॉगिन")}
+              </Button>
+            </a>
+          )}
           <Button
             variant="ghost"
             size="icon"
