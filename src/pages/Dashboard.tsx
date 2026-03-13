@@ -90,12 +90,12 @@ const Dashboard = () => {
     fetchListings();
   };
 
-  const handlePlaceOrder = async (listing: CropListing) => {
+  const handlePlaceOrder = async (listing: CropListing & { farmer_id?: string }) => {
     if (!user) return;
     const { error } = await supabase.from("orders").insert({
       listing_id: listing.id,
       dealer_id: user.id,
-      farmer_id: listing.farmer_id as any,
+      farmer_id: (listing as any).farmer_id,
       quantity: listing.quantity,
       offered_price: listing.price_per_unit,
     });
