@@ -18,6 +18,7 @@ const navItems = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { lang, toggleLang, t } = useLang();
+  const { user } = useAuth();
 
   return (
     <motion.nav
