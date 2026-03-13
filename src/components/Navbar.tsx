@@ -59,6 +59,21 @@ const Navbar = () => {
             {lang === "en" ? "हिंदी" : "English"}
           </Button>
 
+          {user ? (
+            <a href="/dashboard">
+              <Button variant="default" size="sm" className="bg-primary text-primary-foreground btn-glow gap-1.5">
+                <LayoutDashboard className="w-4 h-4" />
+                Dashboard
+              </Button>
+            </a>
+          ) : (
+            <a href="/auth">
+              <Button variant="default" size="sm" className="bg-primary text-primary-foreground btn-glow gap-1.5">
+                <LogIn className="w-4 h-4" />
+                {t("Login", "लॉगिन")}
+              </Button>
+            </a>
+          )}
           <Button
             variant="ghost"
             size="icon"
